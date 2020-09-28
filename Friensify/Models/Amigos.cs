@@ -9,6 +9,6 @@ namespace Friensify.Models
     {
         public string Nickname_usuario { get; set; }
         public string Nicknam_amigo { get; set; }
-        public bool Estado { get; set; }
+        public bool Estados { get; set; }
     }
 }
