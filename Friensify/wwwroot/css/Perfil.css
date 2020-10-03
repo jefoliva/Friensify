@@ -1,0 +1,58 @@
+﻿.reaccion {
+    color: BLACK;
+    font-size: medium;
+}
+
+.card-text2 {
+    font-size: large;
+}
+
+.boton {
+    font-size: x-small;
+    line-height: 1.8;
+    border: 0.1rem solid #dbdbdb;
+    border-radius: 0.3rem;
+    padding: 10px;
+    margin-left: 2rem;
+}
+
+
+
+.w3-row-padding {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    clear: both;
+    margin: 2px;
+}
+
+.w3-margin-bottom {
+    width: 70%;
+}
+
+#message {
+    width: 50%;
+}
+
+.inputsVAR {
+    width: 600px;
+    font-size: 15px;
+    padding: 8px;
+}
+
+.ENCABEZA {
+    font-weight: normal;
+    font-size: 19px;
+}
+
+.ada5V {
+    font-size: 15px;
+}
+
+.TITULOS {
+    font-size: 24px;
+    font-weight: bold;
+}
+ 
