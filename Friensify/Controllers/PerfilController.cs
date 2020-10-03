@@ -16,6 +16,12 @@ namespace Friensify.Controllers
             return View();
         }
 
+        public ActionResult Actualizar()
+        {
+
+            return View();
+        }
+
         // GET: PerfilController/Details/5
         public ActionResult Details(int id)
         {

@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Chat";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+    <div class="container body-content">
+        <div class="container">
+            <div class="col-12 gedf-main">
+
+                <div class="profile mb-4">
+                    <div class="profile-image">
+                        <img alt="Foto del perfil" class="be6sR" src="img/antdavis23-thumbnail.jpg">
+                    </div>
+                    <div>
+                        <a href="Perfil"><button class="btn profile-edit-btn mb-5" type="button">ACTUALIZAR EL PERFIL</button> </a>
+                        <form enctype="multipart/form-data" method="POST" role="presentation">
+                            <input accept="image/jpeg,image/png" class="Archivo mb-6" type="file">
+                        </form>
+                    </div>
+                </div>
+                <div class="NickName mb-4 ">
+                    <h1 class="profile-user-name" style="font-weight: bold;">antdavis23</h1>
+                </div>
+                <div class="Perfil mb-3">
+                    <aside class="ENCABEZA">
+                        <label for="pepName">Nombre</label>
+                    </aside>
+                    <div class=" INGRESO " style="width: 100%; max-width: 355px;">
+                        <input aria-required="false" id="pepName" placeholder="Nombre" type="text" class="inputsVAR" value="Anthony Davis">
+
+                    </div>
+                </div>
+                <div class="Perfil mb-3">
+                    <aside class="ENCABEZA ">
+                        <label for="pepUsername">Nombre de usuario</label>
+                    </aside>
+                    <div class="INGRESO " style="width: 100%; max-width: 355px;">
+                        <input aria-required="true" id="pepUsername" placeholder="Nombre de usuario" type="text" class="inputsVAR" value="antdavis23">
+                    </div>
+                </div>
+
+                <div class="Perfil mb-3">
+                    <aside class="ENCABEZA">
+                        <label for="pepBio">Presentación</label>
+                    </aside>
+                    <div class="INGRESO">
+                        <textarea class="inputsVAR" id="Biografia">Si un maya se desmaya, deja de ser maya? 👨‍💻👨‍🔧</textarea>
+                    </div>
+                </div>
+
+                <div class="PERFIL mb-3" style="width: 100%; max-width: 610px;">
+                    <div class="TITULOS">
+                        <h2 class="TITULOS">Información personal</h2>
+                    </div>
+                    <aside class="ENCABEZA ">
+                        <label for="pepUsername">Proporciona tu información personal, incluso si la cuenta se usa para un negocio, una mascota, etc. Esta información no se incluirá en tu perfil público.</label>
+                    </aside>
+
+                </div>
+
+                <div class="PERFIL mb-3">
+                    <aside class="ENCABEZA  ">
+                        <label for="pepEmail">Correo electrónico</label>
+                    </aside>
+                    <div class="ada5V">
+                        <div class="INGRESO" style="width: 100%; max-width: 355px;">
+                            <input aria-required="false" id="pepEmail" placeholder="Correo electrónico" type="text" class="inputsVAR" value="PEPELEPU@hotmail.com">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="PERFIL mb-3">
+                    <aside class="ENCABEZA">
+                        <label for="pepPhone Number">Número de teléfono</label>
+                    </aside>
+                    <div class="ada5V">
+                        <div class="            AC7dP        Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              " style="width: 100%; max-width: 355px;">
+                            <input aria-required="false" id="pepPhone Number" placeholder="Número de teléfono" type="text" class="inputsVAR" value="+502 6969 6969">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="PERFIL mb-3">
+                    <aside class="ENCABEZA">
+                        <label for="pepGender">Género</label>
+                    </aside>
+                    <div class="ada5V">
+                        <form>
+                            <input type="radio" id="male" name="gender" value="male">
+                            <label for="male">Hombre</label><br>
+                            <input type="radio" id="female" name="gender" value="female">
+                            <label for="female">Mujer</label><br>
+                            <input type="radio" id="other" name="gender" value="other">
+                            <label for="other">Otro</label>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
