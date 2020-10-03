@@ -4,139 +4,143 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-	<div id="chat-container">
-		<div id="buscador-container">
-			<input type="text" placeholder="Buscar" />
-		</div>
-		<div id="conversacion-list">
-			<div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Erickson Enriquez 
-				</div>
-				<div class ="crear-fecha">
-					Oct 1
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Juana de Arco
-				</div>
-				<div class ="crear-fecha">
-					Oct 2
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Jorge Escobar	
-				</div>
-				<div class ="crear-fecha">
-					Oct 3
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Jeffrey la nena
-				</div>
-				<div class ="crear-fecha">
-					Oct 4
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Paco Vargas
-				</div>
-				<div class ="crear-fecha">
-					Oct 5
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Jeffrey la nena
-				</div>
-				<div class ="crear-fecha">
-					Oct 6
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Filomena Guzman
-				</div>
-				<div class ="crear-fecha">
-					Oct 7
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Roberto Gonzalez
-				</div>
-				<div class ="crear-fecha">
-					Oct 8
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		    		    <div class ="conversacion">
-				<img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez"/>
-				<div class="titulo-text"> 
-					Lorena Herrera
-				</div>
-				<div class ="crear-fecha">
-					Oct 9
-				</div>
-				<div class="mensajes-conversacion">
-					Hola como estas? te queria preguntar algo me puedes ayudar
-				</div>
-		    </div>
-		</div>
-		<div id="nuevo-mensaje-container">
-			<a href="#">+</a>
-		</div>
-		<div id="chat-tittle">
-			<span> Erickson Enriquez </span>
-            <i class="text-black-50 fas fa-trash"></i>
-		</div>
-		<div id="chat-conversacion-list">
-			<div class=" mensajes-fila tu-mensaje">
-				<div class=" mensajes-text"> Bueno esta bien</div>	
-				<div class=" mensajes.tiemp">Oct1</div>
-			</div>	
-			<div class=" mensajes-fila otro-mensaje">
-				<div class=" mensajes-text"> Bueno esta bien</div>	
-				<div class=" mensajes.tiemp">Oct1</div>
-			</div>						
-		</div>
-		<div id="chat-formu">
-			<img src="imagenes/enviar.png" alt="Enviar Mensaje"/>
-			<input type="text" placeholder=" Escribe un mensaje"/>
-		</div>
-	</div>
+@section Styles {
+    <link href="@Url.Content("~/css/chat.css")" rel="stylesheet" type="text/css" />
+}
+
+<div id="chat-container">
+    <div id="buscador-container">
+        <input type="text" placeholder="Buscar" />
+    </div>
+    <div id="conversacion-list">
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Erickson Enriquez
+            </div>
+            <div class="crear-fecha">
+                Oct 1
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Juana de Arco
+            </div>
+            <div class="crear-fecha">
+                Oct 2
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Jorge Escobar
+            </div>
+            <div class="crear-fecha">
+                Oct 3
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Jeffrey la nena
+            </div>
+            <div class="crear-fecha">
+                Oct 4
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Paco Vargas
+            </div>
+            <div class="crear-fecha">
+                Oct 5
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Jeffrey la nena
+            </div>
+            <div class="crear-fecha">
+                Oct 6
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Filomena Guzman
+            </div>
+            <div class="crear-fecha">
+                Oct 7
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Roberto Gonzalez
+            </div>
+            <div class="crear-fecha">
+                Oct 8
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+        <div class="conversacion">
+            <img src="imagenes/perfiles/Erickson.png" alt="Erickson Enriquez" />
+            <div class="titulo-text">
+                Lorena Herrera
+            </div>
+            <div class="crear-fecha">
+                Oct 9
+            </div>
+            <div class="mensajes-conversacion">
+                Hola como estas? te queria preguntar algo me puedes ayudar
+            </div>
+        </div>
+    </div>
+    <div id="nuevo-mensaje-container">
+        <a href="#">+</a>
+    </div>
+    <div id="chat-tittle">
+        <span> Erickson Enriquez </span>
+        <i class="text-black-50 fas fa-trash"></i>
+    </div>
+    <div id="chat-conversacion-list">
+        <div class=" mensajes-fila tu-mensaje">
+            <div class=" mensajes-text"> Bueno esta bien</div>
+            <div class=" mensajes.tiemp">Oct1</div>
+        </div>
+        <div class=" mensajes-fila otro-mensaje">
+            <div class=" mensajes-text"> Bueno esta bien</div>
+            <div class=" mensajes.tiemp">Oct1</div>
+        </div>
+    </div>
+    <div id="chat-formu">
+        <img src="imagenes/enviar.png" alt="Enviar Mensaje" />
+        <input type="text" placeholder=" Escribe un mensaje" />
+    </div>
+</div>
