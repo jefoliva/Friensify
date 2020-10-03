@@ -20,8 +20,14 @@ namespace Friensify.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("FriensifyContextConnection")));
 
-                services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<FriensifyContext>();
+                services.AddDefaultIdentity<ApplicationUser>(options => {
+                    options.SignIn.RequireConfirmedAccount = true;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                })
+                .AddEntityFrameworkStores<FriensifyContext>();
             });
         }
     }
