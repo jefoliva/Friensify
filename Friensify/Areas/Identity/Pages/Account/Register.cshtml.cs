@@ -89,7 +89,7 @@ namespace Friensify.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Nombre = Input.Nombre, Apellido = Input.Apellido };
+                var user = new ApplicationUser { UserName = Input.Username, Email = Input.Email, Nombre = Input.Nombre, Apellido = Input.Apellido };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
