@@ -53,11 +53,10 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
             public string Apellido { get; set; }
 
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Numero de telefono")]
             public string PhoneNumber { get; set; }
 
             [DataType(DataType.Text)]
-            [Display(Name = "Phone number")]
             public string ImagenPerfil { get; set; }
 
             [Display(Name = "Cambiar imagen de perfil")]
