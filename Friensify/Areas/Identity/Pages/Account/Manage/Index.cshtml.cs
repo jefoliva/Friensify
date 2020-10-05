@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Friensify.Areas.Identity.Data;
+using Friensify.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace Friensify.Areas.Identity.Pages.Account.Manage
 {
@@ -14,13 +19,19 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly FriensifyContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
         public IndexModel(
+            FriensifyContext context,
+            IWebHostEnvironment hostEnvironment,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _context = context;
+            _hostEnvironment = hostEnvironment;
         }
 
         public string Username { get; set; }
@@ -33,21 +44,40 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
+            [DataType(DataType.Text)]
+            [Display(Name = "Nombre")]
+            public string Nombre { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Apellido")]
+            public string Apellido { get; set; }
+
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [DataType(DataType.Text)]
+            [Display(Name = "Phone number")]
+            public string ImagenPerfil { get; set; }
+
+            [Display(Name = "Cambiar imagen de perfil")]
+            public IFormFile ImagenArchivo { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == userName);
 
             Username = userName;
-
+            
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                Nombre = usuario.Nombre,
+                Apellido = usuario.Apellido,
+                ImagenPerfil = usuario.ImagenPerfil
             };
         }
 
@@ -77,7 +107,11 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
+            var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == userName);
+           
+
             if (Input.PhoneNumber != phoneNumber)
             {
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
@@ -88,9 +122,38 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if(!String.IsNullOrEmpty(Input.ImagenArchivo?.FileName))
+            {
+                string wwwRoothRuta = _hostEnvironment.WebRootPath;
+                string nombreArchivo = Path.GetFileNameWithoutExtension(Input.ImagenArchivo.FileName);
+                string extension = Path.GetExtension(Input.ImagenArchivo.FileName);
+                nombreArchivo = nombreArchivo + DateTime.Now.ToString("yymmssfff") + extension;
+                Input.ImagenPerfil = nombreArchivo;
+
+                usuario.Nombre = Input.Nombre;
+                usuario.Apellido = Input.Apellido;
+                usuario.ImagenPerfil = Input.ImagenPerfil;
+                await _context.SaveChangesAsync();
+
+                string ruta = Path.Combine(wwwRoothRuta + "\\img", nombreArchivo);
+                using (var fileStream = new FileStream(ruta, FileMode.Create))
+                {
+                    await Input.ImagenArchivo.CopyToAsync(fileStream);
+                }
+            } 
+            else
+            {
+                usuario.Nombre = Input.Nombre;
+                usuario.Apellido = Input.Apellido;
+                await _context.SaveChangesAsync();
+            }
+            
+            
+
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
+
     }
 }

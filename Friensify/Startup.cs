@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Friensify.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +27,11 @@ namespace Friensify
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddMvc();
+
+            services.AddDbContext<FriensifyContext>(options 
+              => options.UseSqlServer(Configuration["ConnectionStrings:FriensifyContextConnection"]));
 
             services.AddAuthentication().AddFacebook(facebookOptions =>
             {

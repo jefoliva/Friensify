@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace Friensify.Areas.Identity.Data
@@ -17,5 +19,13 @@ namespace Friensify.Areas.Identity.Data
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
         public string Apellido { get; set; }
+
+        [PersonalData]
+        [DisplayName("Imagen Nombre")]
+        public string ImagenPerfil { get; set; }
+
+        [NotMapped]
+        [DisplayName("Subir Archivo")]
+        public IFormFile ImagenArchivo { get; set; }
     }
 }
