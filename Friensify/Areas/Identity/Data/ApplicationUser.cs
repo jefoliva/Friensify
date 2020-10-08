@@ -27,5 +27,10 @@ namespace Friensify.Areas.Identity.Data
         [NotMapped]
         [DisplayName("Subir Archivo")]
         public IFormFile ImagenArchivo { get; set; }
+
+        public string NombreCompleto()
+        {
+            return $"{Nombre} {Apellido}";
+        }
     }
 }
