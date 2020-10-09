@@ -52,8 +52,12 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Apellido")]
             public string Apellido { get; set; }
 
+            [DataType(DataType.Text)]
+            [Display(Name = "Biografia")]
+            public string Biografia { get; set; }
+
             [Phone]
-            [Display(Name = "Numero de telefono")]
+            [Display(Name = "Número de teléfono")]
             public string PhoneNumber { get; set; }
 
             [DataType(DataType.Text)]
@@ -70,13 +74,14 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
             var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == userName);
 
             Username = userName;
-            
+
             Input = new InputModel
             {
                 PhoneNumber = phoneNumber,
                 Nombre = usuario.Nombre,
                 Apellido = usuario.Apellido,
-                ImagenPerfil = usuario.ImagenPerfil
+                ImagenPerfil = usuario.ImagenPerfil,
+                Biografia = usuario.Biografia
             };
         }
 
@@ -132,6 +137,7 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
                 usuario.Nombre = Input.Nombre;
                 usuario.Apellido = Input.Apellido;
                 usuario.ImagenPerfil = Input.ImagenPerfil;
+                usuario.Biografia = Input.Biografia;
                 await _context.SaveChangesAsync();
 
                 string ruta = Path.Combine(wwwRoothRuta + "\\img", nombreArchivo);
@@ -144,6 +150,7 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
             {
                 usuario.Nombre = Input.Nombre;
                 usuario.Apellido = Input.Apellido;
+                usuario.Biografia = Input.Biografia;
                 await _context.SaveChangesAsync();
             }
             

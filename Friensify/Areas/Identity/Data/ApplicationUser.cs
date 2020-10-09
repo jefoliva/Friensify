@@ -21,11 +21,20 @@ namespace Friensify.Areas.Identity.Data
         public string Apellido { get; set; }
 
         [PersonalData]
+        [Column(TypeName = "nvarchar(255)")]
+        public string Biografia { get; set; }
+
+        [PersonalData]
         [DisplayName("Imagen Nombre")]
         public string ImagenPerfil { get; set; }
 
         [NotMapped]
         [DisplayName("Subir Archivo")]
         public IFormFile ImagenArchivo { get; set; }
+
+        public string NombreCompleto()
+        {
+            return $"{Nombre} {Apellido}";
+        }
     }
 }

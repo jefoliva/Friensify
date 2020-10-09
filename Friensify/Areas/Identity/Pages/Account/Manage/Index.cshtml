@@ -9,16 +9,17 @@
 <partial name="_StatusMessage" model="Model.StatusMessage" />
 <div class="row">
     <div class="col-md-6">
-        <form id="profile-form" enctype="multipart/form-data"  method="post">
+        <form id="profile-form" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="row mb-3">
                 <div class="offset-3 col-md-6">
-                    @if (String.IsNullOrEmpty(Model.Input.ImagenPerfil) ) {
+                    @if (String.IsNullOrEmpty(Model.Input.ImagenPerfil))
+                    {
                         <i class="fas fa-user-circle fa-9x text-secondary"></i>
                     }
                     else
                     {
-                        <img src="~/img/@Model.Input.ImagenPerfil" width="140" height="140"/>
+                        <img src="~/img/@Model.Input.ImagenPerfil" width="140" height="140" />
                     }
                 </div>
             </div>
@@ -41,6 +42,11 @@
                 <label asp-for="Input.Apellido"></label>
                 <input asp-for="Input.Apellido" class="form-control" />
                 <span asp-validation-for="Input.Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Biografia"></label>
+                <textarea asp-for="Input.Biografia" class="form-control"> </textarea>
+                <span asp-validation-for="Input.Biografia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Input.PhoneNumber"></label>

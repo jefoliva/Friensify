@@ -68,7 +68,11 @@ namespace Friensify
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-               
+
+                endpoints.MapControllerRoute(
+                    name: "perfil",
+                    pattern: "{controller=Home}/{action=Index}/{username?}");
+
                 endpoints.MapRazorPages();
 
             });

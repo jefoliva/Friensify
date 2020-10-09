@@ -5,6 +5,10 @@
     <UserSecretsId>55bc048d-e070-4ff2-a08c-831e93db7326</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\20201008090038_agregaDescripcion.cs" />
+    <Compile Remove="Migrations\20201008090038_agregaDescripcion.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.0.0" />

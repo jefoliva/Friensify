@@ -2,16 +2,57 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Friensify.Areas.Identity.Data;
+using Friensify.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Friensify.Controllers
 {
     public class PerfilController : Controller
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly FriensifyContext _context;
+
+        public PerfilController(FriensifyContext context, UserManager<ApplicationUser> userManager)
+        {
+            _userManager = userManager;
+            _context = context;
+        }
         // GET: PerfilController
+        public async Task<IActionResult> Ver(string username)
+        {
+            
+            if(string.IsNullOrEmpty(username))
+            {
+                var current_user = await _userManager.GetUserAsync(HttpContext.User);
+                return View(current_user);
+            }
+
+            var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == username);
+
+            return View(usuario);
+        }
+
+        public async Task<IActionResult> Lista()
+        {
+
+            var users = await _context.Users.ToListAsync();
+
+            var list = "";
+
+            foreach (var user in users)
+                list += user.UserName + '\n';
+
+            return Content(list);
+        }
+
         public ActionResult Perfil()
         {
+
 
             return View();
         }
