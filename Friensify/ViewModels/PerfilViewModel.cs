@@ -17,7 +17,9 @@ namespace Friensify.ViewModels
 
         public string ImagenPerfil { get; set; }
 
-        public Post Post { get; set; }
+        public PostInput Post { get; set; }
+
+        public ICollection<Post> Posts { get; set; }
 
         public string NombreCompleto()
         {
