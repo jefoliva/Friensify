@@ -1,4 +1,6 @@
-﻿@model Friensify.Areas.Identity.Data.ApplicationUser;
+﻿@using Friensify.Models;
+@model Friensify.ViewModels.PerfilViewModel;
+
 
 @{
     ViewData["Title"] = "Perfil";
@@ -20,7 +22,7 @@
         </div>
 
         <div class="profile-user-settings">
-            <h1 class="profile-user-name">@Model.UserName</h1>
+            <h1 class="profile-user-name">@Model.Username</h1>
             <a href="~/Identity/Account/Manage" class="btn profile-edit-btn">EDITAR PERFIL</a>
             <button class="btn profile-edit-btn" aria-label="profile settings"> CHAT </button>
         </div>
@@ -35,7 +37,10 @@
 
         <div class="profile-bio">
             <span class="profile-real-name">@Model.NombreCompleto()</span>
-            <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
+            @if (!string.IsNullOrEmpty(Model.Biografia))
+            {
+                <p>@Model.Biografia</p>
+            }
         </div>
     </div>
     <hr />
@@ -47,7 +52,6 @@
     <div class="container">
 
         <div class="col-12 gedf-main">
-
             <div class="card gedf-card mb-4">
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
@@ -63,8 +67,8 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                             <div class="form-group">
-                                <label class="sr-only" for="message">post</label>
-                                <textarea class="inputsVAR" id="message" cols="150" rows="3" placeholder="Que estas pensando?"></textarea>
+                                <label class="sr-only" for="Contenido">post</label>
+                                <textarea class="inputsVAR" id="Contenido" name="Contenido" cols="150" rows="3" placeholder="Que estas pensando?"></textarea>
                             </div>
 
                         </div>

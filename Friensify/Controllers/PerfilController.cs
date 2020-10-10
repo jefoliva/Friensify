@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Friensify.ViewModels;
 
 namespace Friensify.Controllers
 {
@@ -29,12 +30,34 @@ namespace Friensify.Controllers
             if(string.IsNullOrEmpty(username))
             {
                 var current_user = await _userManager.GetUserAsync(HttpContext.User);
-                return View(current_user);
+
+                var vmuser = new PerfilViewModel
+                {
+                    UserId = current_user.Id,
+                    Username = current_user.UserName,
+                    Nombre = current_user.Nombre,
+                    Apellido = current_user.Apellido,
+                    Biografia = current_user.Biografia,
+                    ImagenPerfil = current_user.ImagenPerfil
+                };
+
+                return View(vmuser);
             }
+
 
             var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == username);
 
-            return View(usuario);
+            var vmusuario = new PerfilViewModel
+            {
+                UserId = usuario.Id,
+                Username = usuario.UserName,
+                Nombre = usuario.Nombre,
+                Apellido = usuario.Apellido,
+                Biografia = usuario.Biografia,
+                ImagenPerfil = usuario.ImagenPerfil
+            };
+
+            return View(vmusuario);
         }
 
         public async Task<IActionResult> Lista()
