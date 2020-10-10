@@ -4,14 +4,16 @@ using Friensify.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Friensify.Migrations
 {
     [DbContext(typeof(FriensifyContext))]
-    partial class FriensifyContextModelSnapshot : ModelSnapshot
+    [Migration("20201010065012_agregaPost2")]
+    partial class agregaPost2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -259,7 +261,7 @@ namespace Friensify.Migrations
 
             modelBuilder.Entity("Friensify.Models.Post", b =>
                 {
-                    b.HasOne("Friensify.Areas.Identity.Data.ApplicationUser", "ApplicationUser")
+                    b.HasOne("Friensify.Areas.Identity.Data.ApplicationUser", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserId");
                 });

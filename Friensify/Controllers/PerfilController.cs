@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Friensify.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace Friensify.Controllers
 {
@@ -16,11 +19,16 @@ namespace Friensify.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly FriensifyContext _context;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public PerfilController(FriensifyContext context, UserManager<ApplicationUser> userManager)
+        public PerfilController(
+            FriensifyContext context, 
+            UserManager<ApplicationUser> userManager,
+            IWebHostEnvironment hostEnvironment)
         {
             _userManager = userManager;
             _context = context;
+            _hostEnvironment = hostEnvironment;
         }
         // GET: PerfilController
         public async Task<IActionResult> Ver(string username)
@@ -29,12 +37,40 @@ namespace Friensify.Controllers
             if(string.IsNullOrEmpty(username))
             {
                 var current_user = await _userManager.GetUserAsync(HttpContext.User);
-                return View(current_user);
+
+                var usuariolog = await _context.Users.Include(p => p.Posts)
+                .FirstOrDefaultAsync(id => id.UserName == current_user.UserName);
+
+                var vmusuariolog = new PerfilViewModel
+                {
+                    UserId = usuariolog.Id,
+                    Username = usuariolog.UserName,
+                    Nombre = usuariolog.Nombre,
+                    Apellido = usuariolog.Apellido,
+                    Biografia = usuariolog.Biografia,
+                    ImagenPerfil = usuariolog.ImagenPerfil,
+                    Posts = usuariolog.Posts.OrderByDescending(p => p.Fecha).ToList()
+                };
+
+                return View(vmusuariolog);
             }
 
-            var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == username);
 
-            return View(usuario);
+            var usuario = await _context.Users.Include(p => p.Posts)
+                .FirstOrDefaultAsync(id => id.UserName == username);
+
+            var vmusuario = new PerfilViewModel
+            {
+                UserId = usuario.Id,
+                Username = usuario.UserName,
+                Nombre = usuario.Nombre,
+                Apellido = usuario.Apellido,
+                Biografia = usuario.Biografia,
+                ImagenPerfil = usuario.ImagenPerfil,
+                Posts = usuario.Posts.OrderByDescending(p => p.Fecha).ToList()
+            };
+
+            return View(vmusuario);
         }
 
         public async Task<IActionResult> Lista()
@@ -50,11 +86,45 @@ namespace Friensify.Controllers
             return Content(list);
         }
 
-        public ActionResult Perfil()
+        public async  Task<IActionResult> CrearPost(PostInput post)
         {
 
+            if(!ModelState.IsValid)
+            {
+                RedirectToAction("Ver", null);
+            }
 
-            return View();
+            
+            if (!String.IsNullOrEmpty(post.ImagenPost?.FileName))
+            {
+                string wwwRoothRuta = _hostEnvironment.WebRootPath;
+                string nombreArchivo = Path.GetFileNameWithoutExtension(post.ImagenPost.FileName);
+                string extension = Path.GetExtension(post.ImagenPost.FileName);
+                nombreArchivo = nombreArchivo + DateTime.Now.ToString("yymmssfff") + extension;
+                post.URLImagen = nombreArchivo;
+
+               
+                string ruta = Path.Combine(wwwRoothRuta + "\\img", nombreArchivo);
+                using (var fileStream = new FileStream(ruta, FileMode.Create))
+                {
+                    await post.ImagenPost.CopyToAsync(fileStream);
+                }
+            }
+
+            var postDB = new Post
+            {
+                Contenido = post.Contenido,
+                Fecha =  DateTime.Now,
+                URLImagen = post.URLImagen,
+                UserId = post.UserId
+            };
+
+            
+            await _context.Post.AddAsync(postDB);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("Ver");
+           // return Content($"userid: {post?.UserId} fecha: {postDB?.Fecha} contenido: {post?.Contenido} url: {post?.URLImagen}");
         }
 
         public ActionResult Actualizar()

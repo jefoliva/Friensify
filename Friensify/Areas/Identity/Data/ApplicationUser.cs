@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Friensify.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
@@ -31,6 +32,8 @@ namespace Friensify.Areas.Identity.Data
         [NotMapped]
         [DisplayName("Subir Archivo")]
         public IFormFile ImagenArchivo { get; set; }
+
+        public ICollection<Post> Posts { get; set; }
 
         public string NombreCompleto()
         {

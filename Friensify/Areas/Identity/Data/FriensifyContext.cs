@@ -11,6 +11,8 @@ namespace Friensify.Models
 {
     public class FriensifyContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Post> Post { get; set; }
+
         public FriensifyContext(DbContextOptions<FriensifyContext> options)
             : base(options)
         {

@@ -1,4 +1,6 @@
-﻿@model Friensify.Areas.Identity.Data.ApplicationUser;
+﻿@using Friensify.Models;
+@model Friensify.ViewModels.PerfilViewModel;
+
 
 @{
     ViewData["Title"] = "Perfil";
@@ -20,7 +22,7 @@
         </div>
 
         <div class="profile-user-settings">
-            <h1 class="profile-user-name">@Model.UserName</h1>
+            <h1 class="profile-user-name">@Model.Username</h1>
             <a href="~/Identity/Account/Manage" class="btn profile-edit-btn">EDITAR PERFIL</a>
             <button class="btn profile-edit-btn" aria-label="profile settings"> CHAT </button>
         </div>
@@ -35,7 +37,10 @@
 
         <div class="profile-bio">
             <span class="profile-real-name">@Model.NombreCompleto()</span>
-            <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
+            @if (!string.IsNullOrEmpty(Model.Biografia))
+            {
+                <p>@Model.Biografia</p>
+            }
         </div>
     </div>
     <hr />
@@ -60,33 +65,90 @@
                     </ul>
                 </div>
                 <div class="card-body">
-                    <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
-                            <div class="form-group">
-                                <label class="sr-only" for="message">post</label>
-                                <textarea class="inputsVAR" id="message" cols="150" rows="3" placeholder="Que estas pensando?"></textarea>
-                            </div>
-
-                        </div>
-                        <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
-                            <div class="form-group">
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Cargar imagen</label>
+                    <form asp-controller="Perfil" asp-action="CrearPost" enctype="multipart/form-data" method="post">
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
+                                <div class="form-group">
+                                    <label class="sr-only" asp-for="@Model.Post.Contenido">post</label>
+                                    <textarea class="inputsVAR" asp-for="@Model.Post.Contenido" cols="150" rows="3" placeholder="Que estas pensando?"></textarea>
+                                    <span asp-validation-for="@Model.Post.Contenido" class="text-danger"></span>
                                 </div>
-                            </div>
-                            <div class="py-4"></div>
-                        </div>
-                    </div>
-                    <div class="btn-toolbar justify-content-between">
-                        <div class="btn-group">
-                            <button type="submit" class="btn profile-edit-btn">Compartir</button>
-                        </div>
 
-                    </div>
+                            </div>
+                            <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                                <div class="form-group">
+
+                                    <div class="custom-file">
+                                        <input asp-for="@Model.Post.ImagenPost" class="custom-file-input" />
+                                        <label asp-for="@Model.Post.ImagenPost" class="custom-file-label">Carga</label>
+                                    </div>
+
+                                </div>
+                                <div class="py-4"></div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="Post.UserId" name="Post.UserId" value="@Model.UserId">
+                        <div class="btn-toolbar justify-content-between">
+                            <div class="btn-group">
+                                <button type="submit" class="btn profile-edit-btn">Compartir</button>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
 
+            @foreach (var post in Model.Posts)
+            {
+                <div class="card gedf-card mb-4">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="img/antdavis23-thumbnail.jpg" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@Model.Username</div>
+                                    <div class="h7 text-muted">@Model.NombreCompleto()</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="@post.PostId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color:BLACK;">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="@post.PostId">
+                                        <div class="h6 dropdown-header">Configuracion</div>
+                                        <a class="dropdown-item" href="#">Guardar</a>
+                                        <a class="dropdown-item" href="#">Reportar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-muted h7 mb-2"> 
+                            <i class="fa fa-clock-o"></i>
+                            <span class="pl-1">@post.TiempoTranscurrido()</span>
+                        </div>
+                        <p class="card-text2">
+                            @post.Contenido
+                        </p>
+                        <div class="w3-row-padding">
+                            @if (!string.IsNullOrEmpty(post.URLImagen))
+                            {
+                                <div class="w3-half">
+                                    <img src="~/img/@post.URLImagen" alt="Northern Lights" class="w3-margin-bottom">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="reaccion"> <i class="fa fa-heart"></i> Me gusta</a>
+                        <a href="#" class="reaccion"><i class="fa fa-comment"></i> Comentar</a>
+                    </div>
+                </div>
+            }
 
             <div class="card gedf-card mb-4">
                 <div class="card-header">
