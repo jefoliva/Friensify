@@ -14,6 +14,12 @@
                 <a asp-controller="Perfil" asp-action="Ver" class="nav-link text-dark">Perfil</a>
             </li>
             <li class="nav-item">
+                <a asp-controller="Home" asp-action="Busqueda" class="nav-link text-dark">Buscar</a>
+            </li>
+            <li class="nav-item">
+                <a asp-controller="Home" asp-action="Presentacion" class="nav-link text-dark">Acerca de</a>
+            </li>
+            <li class="nav-item">
                 <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                     <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Salir</button>
                 </form>

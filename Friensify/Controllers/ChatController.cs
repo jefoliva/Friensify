@@ -2,21 +2,47 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Friensify.Areas.Identity.Data;
+using Friensify.Models;
+using Friensify.ViewModels;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Friensify.Controllers
 {
     public class ChatController : Controller
     {
-        // GET: Chat
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly FriensifyContext _context;
+
+        public ChatController(
+            FriensifyContext context,
+            UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Chat()
+        public async Task<IActionResult> Ver(string username)
         {
-            return View();
+            var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == username);
+
+            var vmusuario = new PerfilViewModel
+            {
+                UserId = usuario.Id,
+                Username = usuario.UserName,
+                Nombre = usuario.Nombre,
+                Apellido = usuario.Apellido,
+                Biografia = usuario.Biografia,
+                ImagenPerfil = usuario.ImagenPerfil,
+            };
+
+            return View(vmusuario);
         }
 
         // GET: Chat/Details/5

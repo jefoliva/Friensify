@@ -33,7 +33,7 @@ namespace Friensify.Models
             var intervaloSec = intervalo.TotalSeconds;
 
             if (intervaloSec < 60)
-                return $"Hace {intervaloSec} segundos";
+                return $"Hace {Math.Floor(intervaloSec)} segundos";
             if (intervaloSec < 3_600)
                 return $"Hace {intervalo.Minutes} minutos";
             if (intervaloSec < 86_400)

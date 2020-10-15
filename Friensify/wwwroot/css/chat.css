@@ -29,7 +29,7 @@ body {
 #buscador-container,
 #conversacion-list,
 #nuevo-mensaje-container {
-    background: #004BAA;
+    background: #91bcc2;
 }
 
 #buscador-container {
@@ -79,7 +79,7 @@ body {
 
     .conversacion.active,
     .conversacion:hover {
-        background: #002C88;
+        background: #62a8b2;
     }
 
     .conversacion:hover {

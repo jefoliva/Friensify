@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Friensify.Areas.Identity.Data;
+using Friensify.CustomValidation;
 using Friensify.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -64,6 +65,9 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
             public string ImagenPerfil { get; set; }
 
             [Display(Name = "Cambiar imagen de perfil")]
+            [DataType(DataType.Upload)]
+            [MaxFileSize(1024 * 1024)]
+            [AllowedExtensions(new string[] { ".jpg", ".png" })]
             public IFormFile ImagenArchivo { get; set; }
         }
 
@@ -114,7 +118,7 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var usuario = await _context.Users.FirstOrDefaultAsync(id => id.UserName == userName);
-           
+
 
             if (Input.PhoneNumber != phoneNumber)
             {
@@ -126,7 +130,7 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            if(!String.IsNullOrEmpty(Input.ImagenArchivo?.FileName))
+            if (!String.IsNullOrEmpty(Input.ImagenArchivo?.FileName))
             {
                 string wwwRoothRuta = _hostEnvironment.WebRootPath;
                 string nombreArchivo = Path.GetFileNameWithoutExtension(Input.ImagenArchivo.FileName);
@@ -145,7 +149,7 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
                 {
                     await Input.ImagenArchivo.CopyToAsync(fileStream);
                 }
-            } 
+            }
             else
             {
                 usuario.Nombre = Input.Nombre;
@@ -153,13 +157,12 @@ namespace Friensify.Areas.Identity.Pages.Account.Manage
                 usuario.Biografia = Input.Biografia;
                 await _context.SaveChangesAsync();
             }
-            
-            
+
+
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Su perfil ha sido actualizado";
             return RedirectToPage();
         }
-
     }
 }

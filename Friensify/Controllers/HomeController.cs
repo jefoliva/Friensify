@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Friensify.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Friensify.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -32,6 +34,15 @@ namespace Friensify.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public ActionResult Busqueda()
+        {
+            return View();
+        }
+
+        public ActionResult Presentacion()
+        {
+            return View();
         }
     }
 }

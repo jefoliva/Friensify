@@ -13,9 +13,8 @@ namespace Friensify.ViewModels
         [Required]
         public string UserId { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        [MinLength(10, ErrorMessage = "Longitud Invalida")]
+        [Required(ErrorMessage = "Campo requerido")]
+        [DataType(DataType.MultilineText)]
         public string Contenido { get; set; }
 
         public string URLImagen { get; set; }
