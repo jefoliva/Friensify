@@ -19,5 +19,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="typeahead.js-bootstrap.css" Version="0.0.4" />
   </ItemGroup>
 </Project>

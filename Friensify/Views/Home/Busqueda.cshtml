@@ -1,148 +1,36 @@
 ﻿
 @{
     ViewData["Title"] = "Busqueda";
+    Layout = "~/Views/Shared/_LayoutFluid.cshtml";
 }
-    @section Styles {
+@section Styles {
 
-        <link href="@Url.Content("~/css/estilobusqueda.css")" rel="stylesheet" type="text/css" />
-    }
+    <link href="@Url.Content("~/css/busqueda.css")" rel="stylesheet" type="text/css" />
+}
 
-<div id="completo-container">
+<div class="container-fluid">
     <div class="header-top">
         <div class="navegacion">
             <fieldset>
                 <input type="search" placeholder="Buscar . . ." id="inputBusqueda">
-                <button type="submit">
+                <button id="buscar" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
             </fieldset>
         </div>
     </div>
-    <div class="raunded row">
+    <div class="rounded row">
         <div class="col-md-4">
             <div id="buscador-container">
-                <h6> Buscados Recientemente</h6>
-                <div id="visitados-container">
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-10">
-                                <span>John Doe</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <h6>Perfiles Mas Visitados</h6>
                 <div id="masvisitados-container">
                     <div class="perfiles">
                         <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
+                            <div class="img-buscar col-md-1">
+                                <img src="~/img/dmr203115238.jpg" />
                             </div>
                             <div class="col-md-8">
-                                <span>John Doe</span>
+                                <span class="pl-2">John Doe</span>
                             </div>
                             <div class="pt-1 col-md-2">
                                 <span class="posicion">1</span>
@@ -150,62 +38,7 @@
                         </div>
 
                     </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-8">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-2">
-                                <span class="posicion">2</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-8">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-2">
-                                <span class="posicion">3</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-8">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-2">
-                                <span class="posicion">4</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-2">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-8">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-2">
-                                <span class="posicion">5</span>
-                            </div>
-                        </div>
-
-                    </div>
+                  
                 </div>
             </div>
         </div>
@@ -213,110 +46,88 @@
             <div id="resultadosb-container">
                 <h6>Resultados de la Busqueda</h6>
                 <div id="rbuscados-container">
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-1">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-9">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">+</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">*</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-1">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-9">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">+</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">*</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-1">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-9">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">+</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">*</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-1">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-9">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">+</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">*</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-1">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-9">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">+</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">*</span>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="perfiles">
-                        <div class="raunded row p-1">
-                            <div class="img-buscar col-md-1">
-                                <img src="~/img/dmr203115238.jpg" alt="Erickson Enriquez" />
-                            </div>
-                            <div class="col-md-9">
-                                <span>John Doe</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">+</span>
-                            </div>
-                            <div class="pt-1 col-md-1">
-                                <span class="posicion">*</span>
-                            </div>
-                        </div>
-
-                    </div>
+                   
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="@Url.Content("~/lib/typeahead/typeahead.bundle.js")"></script>
+    <script>
+        $(document).ready(function () {
+            var usuarios = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nombre', 'apellido', 'userName', 'email'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                prefetch: {
+                    url: '/api/Search',
+                    cache: false
+                }
+            });
+
+            console.log(usuarios);
+
+            $('#inputBusqueda').typeahead({
+                highlight: true
+            },
+            {
+                name: 'usuarios',
+                limit: 10,
+                display: 'nombre',
+                source: usuarios.ttAdapter(),
+                templates: {
+                    suggestion: function (item) {
+                        return `<div><a id="${item.id}"class="sugerencia" href="#">
+                                    <div class="row">
+                                        <div class="col col-2"><img src="@Url.Content("/img/${item.imagenPerfil}")" width="100%"></div>
+                                        <div class="col col-10">
+                                            <div class="row">
+                                                <span class="pl-2 pr-3 font-weight-bold">${item.userName}</span>
+                                                <span class="pl-2 text-secondary"> ${item.nombre} ${item.apellido}</span>
+                                            </div>
+                                            <div class="row"> <span class="pl-2 text-secondary"> ${item.email}</span></div>
+                                        </div>
+                                    </div>
+                                </a></div>`;
+                    }
+                }
+                });
+
+            $('#inputBusqueda').bind('typeahead:render', function(ev) {
+                var suggestions = Array.prototype.slice.call(arguments, 1);
+                console.log(suggestions);
+
+                var markup = '';
+
+                suggestions.forEach(function (user) {
+
+                    markup += `<div class="perfiles">
+                                    <a href="/Perfil/Ver?username=${user.userName}">
+                                    <div class="rounded row p-1">
+                                        <div class="img-buscar col-md-1">
+                                            <img src="@Url.Content("/img/${user.imagenPerfil}")" width="100%"/>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="row">
+                                            <span><strong>${user.nombre} ${user.apellido}</strong></span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="text-muted">${user.userName}</span>
+                                            </div>
+                                        </div>
+                                        <div class="pt-1 col-md-1">
+                                            <span class="posicion">+</span>
+                                        </div>
+                                        <div class="pt-1 col-md-1">
+                                            <span class="posicion">*</span>
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>`;
+                });
+                $('#rbuscados-container').html(markup);
+            });
+        }); 
+    </script>
+}
