@@ -12,6 +12,8 @@ namespace Friensify.Models
     public class FriensifyContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Post> Post { get; set; }
+        public DbSet<VisitasPerfil> VisitasPerfil { get; set; }
+
 
         public FriensifyContext(DbContextOptions<FriensifyContext> options)
             : base(options)
@@ -66,6 +68,9 @@ namespace Friensify.Models
                 // entity.HasKey(key => new { key.UserId, key.LoginProvider, key.Name });
 
             });
+
+            builder.Entity<VisitasPerfil>()
+                .HasKey(c => new { c.IdUsuario, c.Fecha});
         }
     }
 }

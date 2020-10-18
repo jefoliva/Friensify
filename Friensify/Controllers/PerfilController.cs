@@ -38,7 +38,6 @@ namespace Friensify.Controllers
             if(string.IsNullOrEmpty(username))
             {
                 var current_user = await _userManager.GetUserAsync(HttpContext.User);
-
                 var usuariolog = await _context.Users.Include(p => p.Posts)
                 .FirstOrDefaultAsync(id => id.UserName == current_user.UserName);
 
@@ -52,6 +51,8 @@ namespace Friensify.Controllers
                     ImagenPerfil = usuariolog.ImagenPerfil,
                     Posts = usuariolog.Posts.OrderByDescending(p => p.Fecha).ToList()
                 };
+
+                await Helper.ActualizaVisitas(_context, vmusuariolog);
 
                 return View(vmusuariolog);
             }
@@ -70,6 +71,8 @@ namespace Friensify.Controllers
                 ImagenPerfil = usuario.ImagenPerfil,
                 Posts = usuario.Posts.OrderByDescending(p => p.Fecha).ToList()
             };
+
+            await Helper.ActualizaVisitas(_context, vmusuario);
 
             return View(vmusuario);
         }

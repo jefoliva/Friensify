@@ -54,10 +54,7 @@ input:focus {
         }
 
 #buscador-container {
-    margin-top: 10px;
     max-height: 100%;
-    margin-left: 10px;
-    padding: 0px 0px 5px 0px;
     background: #fff;
     border: 1px solid #fff;
     border-radius: 10px;
@@ -65,24 +62,19 @@ input:focus {
 }
 
     #buscador-container h6 {
-        margin-top: 10px;
-        margin-left: 15px;
         color: #000;
         font-weight: bold;
     }
 
-.img-buscar > img {
+.perfiles .img-buscar > img {
     margin-top: 3px;
-    height: 40px;
-    width: 40px;
+    width: 3em;
+    height: 3em;
     border-radius: 100%;
 }
 
-
 #visitados-container {
-    margin-top: 10px;
-    margin-left: 10px;
-    height: 95vh;
+    height: 100%;
     border-radius: 10px;
     overflow-y: scroll;
 }
@@ -103,25 +95,48 @@ input:focus {
     background: #fff;
 }
 
+.perfiles > a:link {
+    color: black !important; 
+}
+
 
     .perfiles:hover {
         color: black;
         background: #DEF2F1;
     }
 
+.resultados-perfiles {
+    margin-right: 3px;
+    margin-left: 3px;
+    max-height: 100%;
+    background: #fff;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+    .resultados-perfiles > a:link {
+        color: black !important;
+    }
+
+
+    .resultados-perfiles:hover {
+        color: black;
+        background: #DEF2F1;
+    }
+
+     .resultados-img > img {
+        width: 4.5em;
+        height: 4.5em;
+        border-radius: 100%;
+    }
+
 .nombre {
-    margin-top: 7px;
-    margin-left: 12px;
     font-weight: bold;
 }
 
 
 #masvisitados-container {
     margin-top: 01px;
-    min-width: 400px;
-    max-width: 400px;
     max-height: 100%;
-    margin-left: 10px;
     border-radius: 10px;
     overflow-y: scroll;
 }
@@ -138,7 +153,6 @@ input:focus {
 #resultadosb-container h6 {
     color: black;
     margin-top: 17px;
-    margin-left: 17px;
     font-weight: bold;
 }
 
@@ -149,6 +163,10 @@ input:focus {
     padding: 0px 0px 5px;
     border-radius: 10px;
     overflow-y: scroll;
+}
+
+.resultados-datos {
+    padding-left: 5px;
 }
 
 ::-webkit-scrollbar {
@@ -279,7 +297,7 @@ div.tt-menu {
     }
 
         .tt-suggestion a:link {
-            color: white;
+            color: black;
         }
 
 

@@ -35,6 +35,7 @@ namespace Friensify.Areas.Identity.Data
 
         public ICollection<Post> Posts { get; set; }
 
+
         public string NombreCompleto()
         {
             return $"{Nombre} {Apellido}";
