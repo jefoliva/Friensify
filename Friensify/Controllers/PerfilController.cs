@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Friensify.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Friensify.Controllers
 {
@@ -53,6 +54,7 @@ namespace Friensify.Controllers
                 };
 
                 await Helper.ActualizaVisitas(_context, vmusuariolog);
+
 
                 return View(vmusuariolog);
             }
